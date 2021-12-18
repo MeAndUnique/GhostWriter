@@ -19,8 +19,8 @@
 				<anchored position="insidetopright" offset="30,2" width="50" height="20" />
 				<parameters>
 					<defaultlabelres>export_label_default</defaultlabelres>
-					<labelsres>export_label_gm|export_label_player</labelsres>
-					<values>gm|player</values>
+					<labelsres>export_label_gm|export_label_player|export_label_both</labelsres>
+					<values>gm|player|both</values>
 				</parameters>
 			</button_stringcycler>
 		</sheetdata>
@@ -45,8 +45,8 @@
 				<anchored position="insidetopright" offset="30,2" width="50" height="20" />
 				<parameters>
 					<defaultlabelres>export_label_default</defaultlabelres>
-					<labelsres>export_label_gm|export_label_player</labelsres>
-					<values>gm|player</values>
+					<labelsres>export_label_gm|export_label_player|export_label_both</labelsres>
+					<values>gm|player|both</values>
 				</parameters>
 			</button_stringcycler>
 		</sheetdata>

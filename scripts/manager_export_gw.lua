@@ -43,7 +43,7 @@ function checkForExport(nodeSource)
 	if (sExport or "") == "" then
 		sExport = OptionsManager.getOption("GWDE")
 	end
-	return bPlayerVisible == (sExport == "player");
+	return (sExport == "both") or (bPlayerVisible == (sExport == "player"));
 end
 
 function handleChaptersNode(nodeChapters)
