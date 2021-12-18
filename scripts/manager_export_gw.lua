@@ -17,7 +17,7 @@ function onInit()
 	performExportOriginal = ExportManager.performExport;
 	ExportManager.performExport = performExport;
 
-	ExportManager.registerPreExportCallback(cleanupChaptersPostExport);
+	ExportManager.registerPostExportCallback(cleanupChaptersPostExport);
 end
 
 function performExport(wExport)
@@ -26,7 +26,6 @@ function performExport(wExport)
 end
 
 function addExportNode(nodeSource, sTargetPath, sExportType, sExportLabel, sExportListClass, sExportRootPath)
-	Debug.chat(nodeSource, sTargetPath, sExportType, sExportLabel, sExportListClass, sExportRootPath);
 	if ReferenceManualManager.MANUAL_DEFAULT_INDEX .. "." .. ReferenceManualManager.MANUAL_DEFAULT_CHAPTER_LIST_NAME == sTargetPath then
 		handleChaptersNode(nodeSource);
 	elseif not checkForExport(nodeSource) then
@@ -44,12 +43,10 @@ function checkForExport(nodeSource)
 	if (sExport or "") == "" then
 		sExport = OptionsManager.getOption("GWDE")
 	end
-	Debug.chat("checkForExport", nodeSource, sExport, bPlayerVisible == (sExport == "player"));
 	return bPlayerVisible == (sExport == "player");
 end
 
 function handleChaptersNode(nodeChapters)
-	Debug.chat("handleChaptersNode1", nodeChapters, removedPages)
 	if next(removedPages) == nil then
 		return;
 	end
@@ -66,7 +63,6 @@ function handleChaptersNode(nodeChapters)
 			local bHasPages = false;
 			for _,nodePage in pairs(DB.getChildren(nodeSubChapter, "refpages")) do
 				local _,sRecord = DB.getValue(nodePage, "listlink", "", "");
-				Debug.chat("handleChaptersNode - page loop", nodePage, sRecord);
 				if removedPages[sRecord] then
 					table.insert(pagesToRemove, nodePage);
 				else
@@ -74,7 +70,6 @@ function handleChaptersNode(nodeChapters)
 				end
 			end
 
-			Debug.chat("handleChaptersNode - sub loop 1", bHasPages, pagesToRemove);
 			if bHasPages then
 				bHasSubChapters = true;
 				for _,nodePage in ipairs(pagesToRemove) do
@@ -85,7 +80,6 @@ function handleChaptersNode(nodeChapters)
 			end
 		end
 
-		Debug.chat("handleChaptersNode - chapter loop 1", bHasSubChapters, subChaptersToRemove);
 		if bHasSubChapters then
 			for _,nodeSubChapter in ipairs(subChaptersToRemove) do
 				DB.deleteNode(nodeSubChapter);
@@ -95,7 +89,6 @@ function handleChaptersNode(nodeChapters)
 		end
 	end
 
-	Debug.chat("handleChaptersNode2", chaptersToRemove);
 	for _,nodeChapter in ipairs(chaptersToRemove) do
 		DB.deleteNode(nodeChapter);
 	end

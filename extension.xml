@@ -38,6 +38,8 @@ SOFTWARE.
 		<script name="ExportManagerGW" file="scripts/manager_export_gw.lua" />
 		<script name="OptionsGW" file="scripts/data_options_gw.lua" />
 
+		<includefile source="campaign/record_image.xml" />
+		<includefile source="campaign/record_npc.xml" />
 		<includefile source="ref/ref_page.xml" />
 		<includefile source="strings/strings.xml" />
 	</base>
