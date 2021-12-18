@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  Please see the license file included with this distribution for 
+  attribution and copyright information.
+-->
+
+<root>
+	<windowclass name="export" merge="join">
+		<sheetdata>
+			<label name="label_playerdefault">
+				<anchored to="frame_recordtype_data" position="insidetopright" offset="5,0" />
+				<static textres="export_label_playerdefault" />
+			</label>
+		</sheetdata>
+	</windowclass>
+
+	<windowclass name="export_recordtype" merge="join">
+		<sheetdata>
+			<button_checkbox name="playerdefault">
+				<anchored width="20" height="20">
+					<top />
+					<right />
+				</anchored>
+			</button_checkbox>
+		</sheetdata>
+	</windowclass>
+</root>
