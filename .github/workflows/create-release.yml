@@ -15,19 +15,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-        
+
     - name: Semantic Release
       uses: cycjimmy/semantic-release-action@v2
-      id: semantic   # Need an `id` for output variables
+      id: semantic
       with:
-        dry_run: true
-        semantic_version: 16
-        branches: |
-          [
-            'main'
-          ]
+        extra_plugins: |
+          @semantic-release/git
+          @semantic-release/changelog
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.CUSTOM_GITHUB_TOKEN }}
+        NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
     - name: Replace Version
       uses: jacobtomlinson/gha-find-replace@v2
@@ -39,7 +37,7 @@ jobs:
       uses: thedoctor0/zip-release@master
       with:
         filename: 'GhostWriter.ext'
-        exclusions: '*.git* *.github* *.resources* /*node_modules/* .editorconfig *.ext'
+        exclusions: '*.git* *.github* *.resources* /*node_modules/* .editorconfig *.ext .releaserc'
 
     - name: Create Release
       uses: ncipollo/release-action@v1
