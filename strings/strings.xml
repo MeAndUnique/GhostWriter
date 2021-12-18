@@ -6,10 +6,7 @@
 -->
 
 <root>
-	<string name="option_header_GW">Ghost Writer</string>
-	<string name="option_label_GWDE">Default Export</string>
-	<string name="option_val_export_gm">GM</string>
-	<string name="option_val_export_player">Player</string>
+	<string name="export_label_playerdefault">Player Default</string>
 
 	<string name="export_label_default">Default</string>
 	<string name="export_label_gm">GM</string>
