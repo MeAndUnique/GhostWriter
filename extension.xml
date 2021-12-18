@@ -29,7 +29,7 @@ SOFTWARE.
 <root release="3.0" version="3">
 	<properties>
 		<name>Feature: Ghost Writer</name>
-		<version>0.0.1</version>
+		<version>SEMANTIC_VERSION_NUMBER</version>
 		<author>MeAndUnique</author>
 		<description>Adds ability to create both Player and GM modules easily from a single campaign.</description>
 	</properties>
@@ -38,10 +38,12 @@ SOFTWARE.
 		<script name="ExportManagerGW" file="scripts/manager_export_gw.lua" />
 		<script name="OptionsGW" file="scripts/data_options_gw.lua" />
 
+		<includefile source="campaign/record_image.xml" />
+		<includefile source="campaign/record_npc.xml" />
 		<includefile source="ref/ref_page.xml" />
 		<includefile source="strings/strings.xml" />
 	</base>
 
-	<announcement text="Ghost Writer v0.0.1 by MeAndUnique." font="emotefont" />
+	<announcement text="Ghost Writer vSEMANTIC_VERSION_NUMBER by MeAndUnique." font="emotefont" />
 
 </root>

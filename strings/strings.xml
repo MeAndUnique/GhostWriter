@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
+<?xml version="1.0" encoding="utf-8"?>
 
 <!--
   Please see the license.html file included with this distribution for 
@@ -14,4 +14,5 @@
 	<string name="export_label_default">Default</string>
 	<string name="export_label_gm">GM</string>
 	<string name="export_label_player">Player</string>
+	<string name="export_label_both">Both</string>
 </root>

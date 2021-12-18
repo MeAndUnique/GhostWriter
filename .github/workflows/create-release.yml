@@ -19,11 +19,18 @@ jobs:
     - uses: ncipollo/release-action@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Set env
+      run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+    - name: Replace Version
+      uses: jacobtomlinson/gha-find-replace@v2
+      with:
+        find: "SEMANTIC_VERSION_NUMBER"
+        replace: $GITHUB_ENV
     - name: Archive Release
       uses: thedoctor0/zip-release@master
       with:
         filename: 'GhostWriter.ext'
-        exclusions: '*.git* *.github* *.resources* /*node_modules/* .editorconfig *.ext LICENSE README.md'
+        exclusions: '*.git* *.github* *.resources* /*node_modules/* .editorconfig *.ext'
     - name: Create Release
       uses: ncipollo/release-action@v1
       with:

@@ -1,19 +1,52 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
+<?xml version="1.0" encoding="utf-8"?>
 
 <!--
-  Please see the license.html file included with this distribution for 
+  Please see the license file included with this distribution for 
   attribution and copyright information.
 -->
 
 <root>
 	<windowclass name="reference_manualtextwide" merge="join">
+		<script>
+			function onLockChanged()
+				super.onLockChanged();
+				local bReadOnly = WindowManager.getReadOnlyState(getDatabaseNode());
+				exportcontrol.setReadOnly(bReadOnly);
+			end
+		</script>
 		<sheetdata>
 			<button_stringcycler name="exportcontrol">
-				<anchored position="insidetopright" offset="35,2" width="45" height="20" />
+				<anchored position="insidetopright" offset="30,2" width="50" height="20" />
 				<parameters>
 					<defaultlabelres>export_label_default</defaultlabelres>
-					<labelsres>export_label_gm|export_label_player</labelsres>
-					<values>gm|player</values>
+					<labelsres>export_label_gm|export_label_player|export_label_both</labelsres>
+					<values>gm|player|both</values>
+				</parameters>
+			</button_stringcycler>
+		</sheetdata>
+	</windowclass>
+	
+	<windowclass name="referencemanualpageheader" merge="join">
+		<script>
+			function update()
+				super.update();
+				local bReadOnly = WindowManager.getReadOnlyState(getDatabaseNode());
+				exportcontrol.setReadOnly(bReadOnly);
+			end
+		</script>
+		<sheetdata>
+			<string_record_name_ref name="name">
+				<anchored>
+					<right parent="" anchor="right" relation="absolute" offset="-95" />
+				</anchored>
+			</string_record_name_ref>
+
+			<button_stringcycler name="exportcontrol">
+				<anchored position="insidetopright" offset="30,2" width="50" height="20" />
+				<parameters>
+					<defaultlabelres>export_label_default</defaultlabelres>
+					<labelsres>export_label_gm|export_label_player|export_label_both</labelsres>
+					<values>gm|player|both</values>
 				</parameters>
 			</button_stringcycler>
 		</sheetdata>
