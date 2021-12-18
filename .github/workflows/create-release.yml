@@ -24,7 +24,10 @@ jobs:
       id: semantic   # Need an `id` for output variables
       with:
         semantic_version: 16
-        branches: [ 'main' ]
+        branches: |
+          [
+            'main'
+          ]
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
