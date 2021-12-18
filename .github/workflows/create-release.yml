@@ -20,6 +20,7 @@ jobs:
       uses: cycjimmy/semantic-release-action@v2
       id: semantic   # Need an `id` for output variables
       with:
+        dry_run: true
         semantic_version: 16
         branches: |
           [
