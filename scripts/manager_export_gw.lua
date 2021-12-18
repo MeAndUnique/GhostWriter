@@ -45,7 +45,7 @@ end
 function checkForExport(nodeSource, sExportType)
 	local sExport = DB.getValue(nodeSource, "exportcontrol");
 	if (sExport or "") == "" then
-		if recordTypePlayerDefault[sExportType] then
+		if recordTypePlayerDefault[sExportType] == 1 then
 			sExport = "player";
 		else
 			sExport = "gm";

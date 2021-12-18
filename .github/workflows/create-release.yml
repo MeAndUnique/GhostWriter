@@ -24,6 +24,8 @@ jobs:
       id: semantic   # Need an `id` for output variables
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        branches: ['main']
 
     - name: Replace Version
       uses: jacobtomlinson/gha-find-replace@v2
