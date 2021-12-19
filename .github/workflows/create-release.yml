@@ -27,6 +27,8 @@ jobs:
     - name: Determine Version
       id: semantic
       uses: gittools/actions/gitversion/execute@v0.9.7
+      with:
+        prefix: 'v'
 
     - name: Replace Version
       uses: jacobtomlinson/gha-find-replace@v2
