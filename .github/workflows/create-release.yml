@@ -14,34 +14,36 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - uses: ncipollo/release-action@v1
+    - name: Checkout
+      uses: actions/checkout@v2
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        
-    - name: Semantic Release
-      uses: cycjimmy/semantic-release-action@v2
-      id: semantic   # Need an `id` for output variables
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        fetch-depth: 0
+
+    - name: Install GitVersion
+      uses: gittools/actions/gitversion/setup@v0.9.7
       with:
-        branches: ['main']
+        versionSpec: '5.x'
+
+    - name: Determine Version
+      id: semantic
+      uses: gittools/actions/gitversion/execute@v0.9.7
 
     - name: Replace Version
       uses: jacobtomlinson/gha-find-replace@v2
       with:
         find: "SEMANTIC_VERSION_NUMBER"
-        replace: ${{ steps.semantic.outputs.new_release_version }}
+        replace: ${{ env.GITVERSION_SEMVER }}
 
     - name: Archive Release
       uses: thedoctor0/zip-release@master
       with:
         filename: 'GhostWriter.ext'
-        exclusions: '*.git* *.github* *.resources* /*node_modules/* .editorconfig *.ext'
+        exclusions: '*.git* *.github* *.resources* /*node_modules/* .editorconfig *.ext .releaserc'
 
-    - name: Create Release
+    - name: Push Release
       uses: ncipollo/release-action@v1
       with:
         artifacts: "GhostWriter.ext"
+        tag: ${{ env.GITVERSION_SEMVER }}
         token: ${{ secrets.GITHUB_TOKEN }}
         allowUpdates: true
