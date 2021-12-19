@@ -1,1 +1,1 @@
-test patch incrementing
+test minor incrementing
