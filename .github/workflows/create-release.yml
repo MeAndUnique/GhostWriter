@@ -24,12 +24,13 @@ jobs:
       uses: codacy/git-version@2.2.0
       with:
         prefix: 'v'
+        release-branch: 'main'
 
     - name: Replace Version
       uses: jacobtomlinson/gha-find-replace@v2
       with:
         find: "SEMANTIC_VERSION_NUMBER"
-        replace: ${{ env.GITVERSION_SEMVER }}
+        replace: ${{ steps.semantic.output.version }}
 
     - name: Archive Release
       uses: thedoctor0/zip-release@master
@@ -41,6 +42,6 @@ jobs:
       uses: ncipollo/release-action@v1
       with:
         artifacts: "GhostWriter.ext"
-        tag: ${{ env.GITVERSION_SEMVER }}
+        tag: ${{ steps.semantic.output.version }}
         token: ${{ secrets.GITHUB_TOKEN }}
         allowUpdates: true
