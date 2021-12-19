@@ -19,31 +19,29 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: Install GitVersion
-      uses: gittools/actions/gitversion/setup@v0.9.7
-      with:
-        versionSpec: '5.x'
-
     - name: Determine Version
-      id: semantic
-      uses: gittools/actions/gitversion/execute@v0.9.7
+      id: version
+      uses: codacy/git-version@2.2.0
+      with:
+        prefix: 'v'
+        release-branch: 'main'
 
     - name: Replace Version
       uses: jacobtomlinson/gha-find-replace@v2
       with:
         find: "SEMANTIC_VERSION_NUMBER"
-        replace: ${{ env.GITVERSION_SEMVER }}
+        replace: ${{ steps.version.outputs.version }}
 
     - name: Archive Release
       uses: thedoctor0/zip-release@master
       with:
         filename: 'GhostWriter.ext'
-        exclusions: '*.git* *.github* *.resources* /*node_modules/* .editorconfig *.ext .releaserc'
+        exclusions: '*.git* *.github* *.resources* /*node_modules/* .editorconfig *.ext'
 
     - name: Push Release
       uses: ncipollo/release-action@v1
       with:
         artifacts: "GhostWriter.ext"
-        tag: ${{ env.GITVERSION_SEMVER }}
+        tag: ${{ steps.version.outputs.version }}
         token: ${{ secrets.GITHUB_TOKEN }}
         allowUpdates: true
