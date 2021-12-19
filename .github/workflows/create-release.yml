@@ -35,15 +35,15 @@ jobs:
         replace: "$GITVERSION_SEMVER"
 
     - name: Create Release
-        uses: actions/create-release@v1
-        with:
-          draft: false
-          prerelease: false
-          release_name: "$GITVERSION_SEMVER"
-          tag_name: "$GITVERSION_SEMVER"
-          body_path: CHANGELOG.md
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      uses: actions/create-release@v1
+      with:
+        draft: false
+        prerelease: false
+        release_name: "$GITVERSION_SEMVER"
+        tag_name: "$GITVERSION_SEMVER"
+        body_path: CHANGELOG.md
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Archive Release
       uses: thedoctor0/zip-release@master
