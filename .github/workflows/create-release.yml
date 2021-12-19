@@ -32,15 +32,15 @@ jobs:
       uses: jacobtomlinson/gha-find-replace@v2
       with:
         find: "SEMANTIC_VERSION_NUMBER"
-        replace: "$GITVERSION_SEMVER"
+        replace: $GITVERSION_SEMVER
 
     - name: Create Release
       uses: actions/create-release@v1
       with:
         draft: false
         prerelease: false
-        release_name: "$GITVERSION_SEMVER"
-        tag_name: "$GITVERSION_SEMVER"
+        release_name: $GITVERSION_SEMVER
+        tag_name: $GITVERSION_SEMVER
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
