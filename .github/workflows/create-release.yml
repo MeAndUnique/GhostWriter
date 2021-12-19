@@ -44,5 +44,6 @@ jobs:
       uses: ncipollo/release-action@v1
       with:
         artifacts: "GhostWriter.ext"
+        tag: $GITVERSION_SEMVER
         token: ${{ secrets.GITHUB_TOKEN }}
         allowUpdates: true
