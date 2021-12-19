@@ -20,7 +20,7 @@ jobs:
         fetch-depth: 0
 
     - name: Determine Version
-      id: semantic
+      id: version
       uses: codacy/git-version@2.2.0
       with:
         prefix: 'v'
@@ -30,13 +30,13 @@ jobs:
       uses: jacobtomlinson/gha-find-replace@v2
       with:
         find: "SEMANTIC_VERSION_NUMBER"
-        replace: ${{ env.VERSION }}
+        replace: ${{ steps.version.outputs.version }}
 
     - name: Archive Release
       uses: thedoctor0/zip-release@master
       with:
         filename: 'GhostWriter.ext'
-        exclusions: '*.git* *.github* *.resources* /*node_modules/* .editorconfig *.ext .releaserc'
+        exclusions: '*.git* *.github* *.resources* /*node_modules/* .editorconfig *.ext'
 
     - name: Push Release
       uses: ncipollo/release-action@v1
