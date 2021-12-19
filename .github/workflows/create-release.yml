@@ -32,7 +32,7 @@ jobs:
       uses: jacobtomlinson/gha-find-replace@v2
       with:
         find: "SEMANTIC_VERSION_NUMBER"
-        replace: ${{ GITVERSION_SEMVER }}
+        replace: ${{ steps.semantic.output.semVer }}
 
     - name: Archive Release
       uses: thedoctor0/zip-release@master
@@ -44,6 +44,6 @@ jobs:
       uses: ncipollo/release-action@v1
       with:
         artifacts: "GhostWriter.ext"
-        tag: ${{ GITVERSION_SEMVER }}
+        tag: ${{ steps.semantic.output.semVer }}
         token: ${{ secrets.GITHUB_TOKEN }}
         allowUpdates: true
