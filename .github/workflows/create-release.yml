@@ -34,16 +34,6 @@ jobs:
         find: "SEMANTIC_VERSION_NUMBER"
         replace: $GITVERSION_SEMVER
 
-    - name: Create Release
-      uses: actions/create-release@v1
-      with:
-        draft: false
-        prerelease: false
-        release_name: $GITVERSION_SEMVER
-        tag_name: $GITVERSION_SEMVER
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
     - name: Archive Release
       uses: thedoctor0/zip-release@master
       with:
@@ -51,6 +41,8 @@ jobs:
         exclusions: '*.git* *.github* *.resources* /*node_modules/* .editorconfig *.ext .releaserc'
 
     - name: Push Release
-      uses: actions/upload-artifact@v2
+      uses: ncipollo/release-action@v1
       with:
-        path: 'GhostWriter.ext'
+        artifacts: "GhostWriter.ext"
+        token: ${{ secrets.GITHUB_TOKEN }}
+        allowUpdates: true
