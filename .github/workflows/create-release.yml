@@ -20,7 +20,7 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
 
-    - uses: bhowell2/github-substring-action
+    - uses: bhowell2/github-substring-action@v1
       id: version
       with:
         value: ${{github.ref_name}}
