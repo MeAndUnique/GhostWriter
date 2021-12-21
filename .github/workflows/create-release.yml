@@ -20,17 +20,11 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
 
-    - uses: bhowell2/github-substring-action@v1
-      id: version
-      with:
-        value: ${{github.ref_name}}
-        index_of_str: "v"
-
     - name: Replace Version
       uses: jacobtomlinson/gha-find-replace@v2
       with:
-        find: "SEMANTIC_VERSION_NUMBER"
-        replace: ${{steps.version.output.substring}}
+        find: "dev_version"
+        replace: ${{env.RELEASE_VERSION}}
 
     - name: Archive Release
       uses: thedoctor0/zip-release@master

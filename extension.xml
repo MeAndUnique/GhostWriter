@@ -29,7 +29,7 @@ SOFTWARE.
 <root release="3.0" version="3">
 	<properties>
 		<name>Feature: Ghost Writer</name>
-		<version>SEMANTIC_VERSION_NUMBER</version>
+		<version>dev_version</version>
 		<author>MeAndUnique</author>
 		<description>Adds ability to create both Player and GM modules easily from a single campaign.</description>
 	</properties>
@@ -44,6 +44,6 @@ SOFTWARE.
 		<includefile source="utility/utility_export.xml" />
 	</base>
 
-	<announcement text="Ghost Writer vSEMANTIC_VERSION_NUMBER by MeAndUnique." font="emotefont" />
+	<announcement text="Ghost Writer dev_version by MeAndUnique." font="emotefont" />
 
 </root>
