@@ -24,7 +24,7 @@ jobs:
       uses: jacobtomlinson/gha-find-replace@v2
       with:
         find: "dev_version"
-        replace: ${{env.RELEASE_VERSION}}
+        replace: ${{github.ref_name}}
 
     - name: Archive Release
       uses: thedoctor0/zip-release@master
