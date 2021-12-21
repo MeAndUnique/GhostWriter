@@ -20,15 +20,11 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Get Version
-      id: version
-      run: echo ::set-output name=version_number::$(echo ${github.ref_name:1})
-
     - name: Replace Version
       uses: jacobtomlinson/gha-find-replace@v2
       with:
         find: "SEMANTIC_VERSION_NUMBER"
-        replace: ${{steps.version.output.version_number}}
+        replace: ${{github.ref_name:1}}
 
     - name: Archive Release
       uses: thedoctor0/zip-release@master
