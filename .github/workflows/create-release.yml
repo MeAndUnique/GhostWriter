@@ -20,11 +20,14 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
 
+    - name: Get Version
+      run: echo "RELEASE_VERSION=${github.ref_name:1}" >> GITHUB_ENV
+
     - name: Replace Version
       uses: jacobtomlinson/gha-find-replace@v2
       with:
         find: "SEMANTIC_VERSION_NUMBER"
-        replace: ${{github.ref_name:1}}
+        replace: ${{env.RELEASE_VERSION}}
 
     - name: Archive Release
       uses: thedoctor0/zip-release@master
