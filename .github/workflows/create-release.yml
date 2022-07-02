@@ -1,7 +1,8 @@
 on:
   push:
-    branches:
-    - 'main' # Push events to main
+    # Sequence of patterns matched against refs/tags
+    tags:
+    - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -14,23 +15,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
+    - uses: actions/checkout@v1
+    - uses: ncipollo/release-action@v1
       with:
-        fetch-depth: 0
-
-    - name: Determine Version
-      id: version
-      uses: codacy/git-version@2.2.0
-      with:
-        prefix: 'v'
-        release-branch: 'main'
+        token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Replace Version
       uses: jacobtomlinson/gha-find-replace@v2
       with:
-        find: "SEMANTIC_VERSION_NUMBER"
-        replace: ${{ steps.version.outputs.version }}
+        find: "dev_version"
+        replace: ${{github.ref_name}}
 
     - name: Archive Release
       uses: thedoctor0/zip-release@master
@@ -42,6 +36,5 @@ jobs:
       uses: ncipollo/release-action@v1
       with:
         artifacts: "GhostWriter.ext"
-        tag: ${{ steps.version.outputs.version }}
         token: ${{ secrets.GITHUB_TOKEN }}
         allowUpdates: true
