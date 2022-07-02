@@ -7,34 +7,9 @@
 
 <root>
 	<windowclass name="imagewindow_header" merge="join">
-		<script>
-			local updateOriginal;
-			function onInit()
-				updateOriginal = super.update;
-				super.update = update;
-				super.onInit();
-			end
-			function update()
-				if updateOriginal then
-					updateOriginal();
-					local bReadOnly = WindowManager.getReadOnlyState(getDatabaseNode());
-					exportcontrol.setReadOnly(bReadOnly);
-				end
-			end
-		</script>
+		<script file="campaign/scripts/exportcontrol_header.lua" />
 		<sheetdata>
-			<button_stringcycler name="exportcontrol" insertbefore="nonid_name">
-				<anchored position="insidetopright" offset="30,2" width="50" height="20" />
-				<anchored>
-					<top offset="2" />
-					<right parent="rightanchor" anchor="left" relation="relative" offset="-5" />
-				</anchored>
-				<parameters>
-					<defaultlabelres>export_label_default</defaultlabelres>
-					<labelsres>export_label_gm|export_label_player|export_label_both</labelsres>
-					<values>gm|player|both</values>
-				</parameters>
-			</button_stringcycler>
+			<exportcontrol insertbefore="nonid_name" />
 		</sheetdata>
 	</windowclass>
 </root>

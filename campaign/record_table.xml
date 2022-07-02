@@ -6,7 +6,7 @@
 -->
 
 <root>
-	<windowclass name="npc_header" merge="join">
+	<windowclass name="table_header" merge="join">
 		<script file="campaign/scripts/exportcontrol_header.lua" />
 		<sheetdata>
 			<exportcontrol insertbefore="name" />

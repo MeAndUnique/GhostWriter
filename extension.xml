@@ -39,6 +39,8 @@ SOFTWARE.
 
 		<includefile source="campaign/record_image.xml" />
 		<includefile source="campaign/record_npc.xml" />
+		<includefile source="campaign/record_table.xml" />
+		<includefile source="campaign/template_exportcontrol.xml" />
 		<includefile source="ref/ref_page.xml" />
 		<includefile source="strings/strings.xml" />
 		<includefile source="utility/utility_export.xml" />
